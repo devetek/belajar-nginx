@@ -1,0 +1,21 @@
+version: '3'
+services:
+  belajar-nginx:
+    image: prakasa1904/nginx-lua:alpine
+    working_dir: /nginx
+    container_name: belajar-nginx
+    privileged: true
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      # virtual server config
+      - ${PWD}/nginx/terpusat.conf:/etc/nginx/conf.d/terpusat.conf
+      # main nginx config
+      - ${PWD}/nginx/nginx.conf:/etc/nginx/nginx.conf
+      # server cert config
+      - ${PWD}/terpusat.com-key.pem:/etc/nginx/cert/terpusat.com-key.pem
+      - ${PWD}/terpusat.com.pem:/etc/nginx/cert/terpusat.com.pem
+      # static file config
+      - ${PWD}/nginx/static:/var/wwww/terpusat
+    restart: unless-stopped

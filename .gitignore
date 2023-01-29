@@ -1,0 +1,3 @@
+# ignore local certificate to remote
+terpusat.com-key.pem
+terpusat.com.pem
